@@ -4,7 +4,6 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Card from './Card';
 import mokoko from './mokoko.png';
-import first from './first.jpg';
 
 function App() {
 const[cards, setCards] = useState([
