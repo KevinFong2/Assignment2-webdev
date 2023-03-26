@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-// import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Card from './Card';
@@ -27,6 +25,18 @@ function App() {
     {id:12, pair:6,backImage: mokoko, frontImage:flex, matching: false, flipped: false},
   ]);
 
+  const flipMokokoCard = (id) => {
+    setCards((mokokoCards) => {
+      return mokokoCards.map((card) => {
+        if (card.id === id) {
+          return { ...card, flipped: !card.flipped };
+        } else {
+          return card;
+        }
+      });
+    });
+  };
+
   return (
     <div className="App">
     <header className="App-header">
@@ -36,21 +46,21 @@ function App() {
         <tbody>
         <tr>
               {cards.slice(0,4).map((cards) => (
-              <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} matching={cards.matching} flipped={cards.flipped} />))}
+              <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} matching={cards.matching} flipped={cards.flipped} onClick={flipMokokoCard} />))}
           </tr>
           <tr>
             {cards.slice(4,8).map((cards) => (
-            <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} matching={cards.matching} flipped={cards.flipped} />))}
+            <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} matching={cards.matching} flipped={cards.flipped} onClick={flipMokokoCard}  />))}
           </tr>
           <tr>
               {cards.slice(8,12).map((cards) => (
-              <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} matching={cards.matching} flipped={cards.flipped} />))}
+              <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} matching={cards.matching} flipped={cards.flipped} onClick={flipMokokoCard} />))}
           </tr>
         </tbody>
       </table>
     </header>
   </div>
-);
+  );
 }
 
 export default App;
