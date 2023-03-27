@@ -25,6 +25,8 @@ function App() {
     {id:12, backImage: mokoko, frontImage:flex, matching: false, flipped: false},
   ]);
   const [storedCards, setStoredCards] = useState([]);
+  const [counter, setCounter] = useState(0);
+  const [matchedPairs, setMatchedPairs] = useState(0);
 
   const shuffleMokokoCards = (cards) => {
     let shuffledMokokoCards = [...cards];
@@ -41,6 +43,14 @@ function App() {
     setStoredCards([]);
     setCards(shuffleMokokoCards(cards));
   }, []);
+
+  useEffect(() => {
+    if (matchedPairs === cards.length / 2) {
+      setTimeout(() => {
+        alert(`You have matched all the Mokoko cards \nYou won in ${counter} turns!`);
+      }, 250);
+    }
+  }, [matchedPairs]);
 
   const handleMokokoCard = (id) => {
     if(storedCards.length === 2) { 
@@ -61,6 +71,7 @@ function App() {
     if(storedCards.length === 1){
       const firstCard = cards.find((card) => card.id === storedCards[0]);
       const secondCard = cards.find((card) => card.id === id);
+      setCounter(counter + 1);
 
       if(storedCards.length === 1){
         if(firstCard.frontImage === secondCard.frontImage){
@@ -74,6 +85,7 @@ function App() {
             });
           });
           setStoredCards([]);
+          setMatchedPairs(matchedPairs + 1);
         }
         else{
           setTimeout(() => {
@@ -94,6 +106,8 @@ function App() {
   };
 
   const resetGame = () => {
+    setCounter(0);
+    setMatchedPairs(0);
     setStoredCards([]);
     setCards(shuffleMokokoCards(cards.map((card) => ({...card,flipped: false,matching: false, }))));
   };
@@ -103,6 +117,7 @@ function App() {
     <header className="App-header">
       <h2>Find the matching picture</h2>
       <button className='button' onClick={resetGame}>New Game</button>
+      <p>Turns: {counter}</p>
       <table>
         <tbody>
         <tr>
