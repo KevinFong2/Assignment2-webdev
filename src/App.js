@@ -26,7 +26,7 @@ function App() {
   ]);
   const [storedCards, setStoredCards] = useState([]);
   const [counter, setCounter] = useState(0);
-  
+  const [matchedPairs, setMatchedPairs] = useState(0);
 
   const shuffleMokokoCards = (cards) => {
     let shuffledMokokoCards = [...cards];
@@ -43,6 +43,14 @@ function App() {
     setStoredCards([]);
     setCards(shuffleMokokoCards(cards));
   }, []);
+
+  useEffect(() => {
+    if (matchedPairs === cards.length / 2) {
+      setTimeout(() => {
+        alert(`You have matched all the Mokoko cards \nYou won in ${counter} turns!`);
+      }, 250);
+    }
+  }, [matchedPairs]);
 
   const handleMokokoCard = (id) => {
     if(storedCards.length === 2) { 
@@ -77,6 +85,7 @@ function App() {
             });
           });
           setStoredCards([]);
+          setMatchedPairs(matchedPairs + 1);
         }
         else{
           setTimeout(() => {
@@ -98,6 +107,7 @@ function App() {
 
   const resetGame = () => {
     setCounter(0);
+    setMatchedPairs(0);
     setStoredCards([]);
     setCards(shuffleMokokoCards(cards.map((card) => ({...card,flipped: false,matching: false, }))));
   };
