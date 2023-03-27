@@ -25,6 +25,8 @@ function App() {
     {id:12, backImage: mokoko, frontImage:flex, matching: false, flipped: false},
   ]);
   const [storedCards, setStoredCards] = useState([]);
+  const [counter, setCounter] = useState(0);
+  
 
   const shuffleMokokoCards = (cards) => {
     let shuffledMokokoCards = [...cards];
@@ -61,6 +63,7 @@ function App() {
     if(storedCards.length === 1){
       const firstCard = cards.find((card) => card.id === storedCards[0]);
       const secondCard = cards.find((card) => card.id === id);
+      setCounter(counter + 1);
 
       if(storedCards.length === 1){
         if(firstCard.frontImage === secondCard.frontImage){
@@ -94,6 +97,7 @@ function App() {
   };
 
   const resetGame = () => {
+    setCounter(0);
     setStoredCards([]);
     setCards(shuffleMokokoCards(cards.map((card) => ({...card,flipped: false,matching: false, }))));
   };
@@ -103,6 +107,7 @@ function App() {
     <header className="App-header">
       <h2>Find the matching picture</h2>
       <button className='button' onClick={resetGame}>New Game</button>
+      <p>Turns: {counter}</p>
       <table>
         <tbody>
         <tr>
