@@ -30,6 +30,7 @@ function App() {
     if(storedCards.length === 2) { 
       return;
     }
+    setStoredCards([...storedCards, id]);
 
     setCards((mokokoCards) => {
       return mokokoCards.map((card) => {
@@ -41,14 +42,39 @@ function App() {
       });
     });
 
-    setStoredCards([...storedCards, id]);
     if(storedCards.length === 1){
       const firstCard = cards.find((card) => card.id === storedCards[0]);
       const secondCard = cards.find((card) => card.id === id);
+
+      if(storedCards.length === 1){
+        if(firstCard.frontImage === secondCard.frontImage){
+          setCards((mokokoCards) => {
+            return mokokoCards.map((card) => {
+              if (card.id === id || card.id === storedCards[0]) {
+                return { ...card, matching: true };
+              } else {
+                return card;
+              }
+            });
+          });
+          setStoredCards([]);
+        }
+        else{
+          setTimeout(() => {
+            setCards((mokokoCards) => {
+              return mokokoCards.map((card) => {
+                if (card.id === firstCard.id || card.id === secondCard.id) {
+                  return { ...card, flipped: false };
+                } else {
+                  return card;
+                }
+              });
+            });
+            setStoredCards([]);
+          }, 1000);
+        }
+      }
     }
-
-
-
   };
 
   return (
