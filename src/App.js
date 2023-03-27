@@ -26,6 +26,17 @@ function App() {
   ]);
   const [storedCards, setStoredCards] = useState([]);
 
+  const shuffleMokokoCards = (cards) => {
+    let shuffledMokokoCards = [...cards];
+    for (let i = shuffledMokokoCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = shuffledMokokoCards[i];
+      shuffledMokokoCards[i] = shuffledMokokoCards[j];
+      shuffledMokokoCards[j] = temp;
+    }
+    return shuffledMokokoCards;
+  };
+
   const handleMokokoCard = (id) => {
     if(storedCards.length === 2) { 
       return;
