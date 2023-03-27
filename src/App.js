@@ -26,6 +26,22 @@ function App() {
   ]);
   const [storedCards, setStoredCards] = useState([]);
 
+  const shuffleMokokoCards = (cards) => {
+    let shuffledMokokoCards = [...cards];
+    for (let i = shuffledMokokoCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = shuffledMokokoCards[i];
+      shuffledMokokoCards[i] = shuffledMokokoCards[j];
+      shuffledMokokoCards[j] = temp;
+    }
+    return shuffledMokokoCards;
+  };
+
+  useEffect(() => {
+    setStoredCards([]);
+    setCards(shuffleMokokoCards(cards));
+  }, []);
+
   const handleMokokoCard = (id) => {
     if(storedCards.length === 2) { 
       return;
@@ -77,11 +93,16 @@ function App() {
     }
   };
 
+  const resetGame = () => {
+    setStoredCards([]);
+    setCards(shuffleMokokoCards(cards.map((card) => ({...card,flipped: false,matching: false, }))));
+  };
+
   return (
     <div className="App">
     <header className="App-header">
       <h2>Find the matching picture</h2>
-      <button className='button'>New Game</button>
+      <button className='button' onClick={resetGame}>New Game</button>
       <table>
         <tbody>
         <tr>
