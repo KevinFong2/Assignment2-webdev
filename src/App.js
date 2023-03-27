@@ -115,22 +115,22 @@ function App() {
   return (
     <div className="App">
     <header className="App-header">
-      <h3>Find the matching picture</h3>
+      <h3>Mokoko Memory Game</h3>
       <button className='button' onClick={resetGame}>New Game</button>
-      <p>Turns: {counter}</p>
+      <p>Turn: {counter}</p>
       <table>
         <tbody>
         <tr>
-              {cards.slice(0,4).map((cards) => (
-              <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} flipped={cards.flipped} onClick={handleMokokoCard} />))}
+            {cards.slice(0,4).map((cards) => (
+            <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} flipped={cards.flipped} onClick={handleMokokoCard} />))}
           </tr>
           <tr>
             {cards.slice(4,8).map((cards) => (
             <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} flipped={cards.flipped} onClick={handleMokokoCard}  />))}
           </tr>
           <tr>
-              {cards.slice(8,12).map((cards) => (
-              <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} flipped={cards.flipped} onClick={handleMokokoCard} />))}
+            {cards.slice(8,12).map((cards) => (
+            <Card key={cards.id} id={cards.id} backImage={cards.backImage} frontImage={cards.frontImage} flipped={cards.flipped} onClick={handleMokokoCard} />))}
           </tr>
         </tbody>
       </table>
