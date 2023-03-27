@@ -115,7 +115,7 @@ function App() {
   return (
     <div className="App">
     <header className="App-header">
-      <h2>Find the matching picture</h2>
+      <h3>Find the matching picture</h3>
       <button className='button' onClick={resetGame}>New Game</button>
       <p>Turns: {counter}</p>
       <table>

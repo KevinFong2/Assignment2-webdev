@@ -1,4 +1,14 @@
-.Card{
-    height: 200px;
-    width: 200px;
-  }
+.Card {
+    height: 175px;
+    width: 175px;
+    background-color: #4aac4a;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
