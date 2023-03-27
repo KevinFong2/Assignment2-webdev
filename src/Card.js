@@ -1,6 +1,6 @@
 import './Card.css';
 
-function Card({id, backImage, frontImage, matching, flipped, onClick}) {
+function Card({id, backImage, frontImage, flipped, onClick}) {
     const handleClick = () => {
         if (!flipped) {
           onClick(id);
